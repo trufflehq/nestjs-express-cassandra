@@ -1,4 +1,3 @@
-import { Entity } from '../decorators';
 import { FindSubQueryStatic } from './externals/express-cassandra.interface';
 
 export interface EntityOptions<T = object> {
@@ -53,7 +52,7 @@ export interface EntityExtraOptions {
   versions?: { key: string };
 }
 
-type FilterOptions<T> = Partial<{ [P in keyof T]: FindSubQueryStatic }>;
+type FilterOptions<T> = Record<string, FindSubQueryStatic>;
 
 interface CustomIndexOptions {
   on: string;
@@ -64,7 +63,7 @@ interface CustomIndexOptions {
 }
 
 type EsIndexPropertiesOptionsStatic<T> = {
-  [P in keyof T]?: { type?: string; index?: string }
+  [P in keyof T]?: { type?: string; index?: string };
 };
 
 interface GraphMappingOptionsStatic<Entity = any> {
