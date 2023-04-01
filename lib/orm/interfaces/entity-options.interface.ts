@@ -1,3 +1,4 @@
+import { Entity } from '../decorators';
 import { FindSubQueryStatic } from './externals/express-cassandra.interface';
 
 export interface EntityOptions<T = object> {
@@ -30,16 +31,16 @@ export interface EntityOptions<T = object> {
   [index: string]: any;
 }
 
-export type ClusterOrder<T = any> = { [P in keyof T]?: 'desc' | 'asc' };
+export type ClusterOrder = Record<string, 'desc' | 'asc'>;
 
 export interface MaterializeViewStatic<T> {
   select?: Array<keyof T>;
 
   key: Array<keyof T | Array<keyof T>>;
 
-  clustering_order?: ClusterOrder<T>;
+  clustering_order?: ClusterOrder;
 
-  filter?: FilterOptions<T>;
+  filters?: FilterOptions<T>;
 }
 
 export interface EntityExtraOptions {
