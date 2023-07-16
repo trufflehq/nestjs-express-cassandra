@@ -25,6 +25,7 @@
   "peerDependencies": {
     "@nestjs/common": "^6.7.0",
     "@nestjs/core": "^6.7.0",
+    "cassandra-driver": "^4.6.2",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.0.0"
   },
@@ -47,7 +48,6 @@
     ]
   },
   "dependencies": {
-    "@types/cassandra-driver": "3.6.0",
     "express-cassandra": "https://github.com/trufflehq/express-cassandra/releases/download/v2.8.1/express-cassandra-2.8.1.tar.gz",
     "merge-deep": "3.0.2"
   },
