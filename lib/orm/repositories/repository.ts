@@ -105,17 +105,17 @@ export class Repository<Entity = any> {
 
   save(
     entity: Partial<Entity>,
-    options?: SaveOptionsStatic,
+    options?: { return_query?: boolean } & SaveOptionsStatic,
   ): Observable<Entity>;
 
   save(
     entities: Partial<Entity>[],
-    options?: SaveOptionsStatic,
+    options?: { return_query?: boolean } & SaveOptionsStatic,
   ): Observable<Entity[]>;
 
   save(
     entityLike: Partial<Entity> | Partial<Entity>[],
-    options: SaveOptionsStatic = {},
+    options: { return_query?: boolean } & SaveOptionsStatic = {},
   ): Observable<Entity> | Observable<Entity[]> {
     const saveFunc = async entity => {
       const model = new this.model(entity);
@@ -133,13 +133,13 @@ export class Repository<Entity = any> {
   update(
     query: FindQuery<Entity>,
     updateValue: Partial<Entity>,
-    options?: UpdateOptionsStatic<Entity>,
+    options?: { return_query?: boolean } & UpdateOptionsStatic<Entity>,
   ): Observable<any>;
 
   update(
     query: FindQuery<Entity>,
     updateValue: Partial<Entity>,
-    options: UpdateOptionsStatic<Entity> = {},
+    options: { return_query?: boolean } & UpdateOptionsStatic<Entity> = {},
   ): Observable<any> {
     return defer(() =>
       this.model.updateAsync(query, updateValue, {
@@ -149,13 +149,13 @@ export class Repository<Entity = any> {
     );
   }
 
-  remove(entity: Entity, options?: DeleteOptionsStatic): Observable<Entity>;
+  remove(entity: Entity, options?: { return_query?: boolean } & DeleteOptionsStatic): Observable<Entity>;
 
-  remove(entity: Entity[], options?: DeleteOptionsStatic): Observable<Entity[]>;
+  remove(entity: Entity[], options?: { return_query?: boolean } & DeleteOptionsStatic): Observable<Entity[]>;
 
   remove(
     entityOrEntities: Entity | Entity[],
-    options: DeleteOptionsStatic = {},
+    options: { return_query?: boolean } & DeleteOptionsStatic = {},
   ): Observable<Entity | Entity[]> {
     const removeFunc = entity =>
       new this.model(entity).deleteAsync({
@@ -174,7 +174,7 @@ export class Repository<Entity = any> {
 
   delete(
     query: FindQuery<Entity>,
-    options?: DeleteOptionsStatic,
+    options?: { return_query?: boolean } & DeleteOptionsStatic,
   ): Observable<any>;
 
   delete(query = {}, options = {}) {
